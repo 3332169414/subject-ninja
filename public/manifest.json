@@ -1,0 +1,9 @@
+{
+  "name": "学科忍者：知识乱斗",
+  "short_name": "学科忍者",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#00FFFF",
+  "description": "通过双手手势切中掉落学科物件的前端互动游戏"
+}

@@ -1,0 +1,35 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 发光晕层 -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#67E8F9" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#67E8F9" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 底盘辉光 -->
+  <circle cx="256" cy="256" r="256" fill="url(#glow)" />
+  
+  <!-- 深色半透明主底盘 -->
+  <circle cx="256" cy="256" r="230" fill="#050a14" fill-opacity="0.9" />
+  
+  <!-- 多重发光边框 -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#67E8F9" stroke-width="12" opacity="0.4" filter="blur(6px)"/>
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#67E8F9" stroke-width="6" />
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#67E8F9" stroke-width="4" stroke-dasharray="15, 15" opacity="0.8"/>
+
+  <!-- 中间巨大 emoji -->
+  <text x="256" y="240" font-family="Arial, sans-serif" font-size="240" text-anchor="middle" dominant-baseline="middle" filter="url(#neon-glow)">💎</text>
+
+  <!-- 底部显示物件中文名的高亮铭牌 -->
+  <rect x="80" y="380" width="352" height="90" rx="16" fill="#000000" fill-opacity="0.8" stroke="#67E8F9" stroke-width="4"/>
+  <rect x="80" y="380" width="352" height="90" rx="16" fill="#67E8F9" fill-opacity="0.15" />
+  <text x="256" y="430" font-family="'Courier New', Courier, monospace, 'Microsoft YaHei', sans-serif" font-size="46" font-weight="900" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="text-shadow: 0 0 12px #67E8F9, 0 0 24px #67E8F9;">岩矿标本</text>
+</svg>
