@@ -111,7 +111,7 @@ export const StartCalibration: React.FC<StartCalibrationProps> = ({
 
       {/* 在测试阶段（摄像头ready但还未成功）显示顶部操作提示 */}
       {cameraStatus === 'ready' && !calibrationSuccess && (
-        <div style={{
+        <div className="calibration-tip" style={{
           position: 'absolute',
           top: '2rem',
           left: '50%',
@@ -137,12 +137,12 @@ export const StartCalibration: React.FC<StartCalibrationProps> = ({
 
       {/* 在测试阶段（摄像头ready但还未成功）隐藏中心提示框，避免遮挡画布 */}
       {(!enableGesture || calibrationSuccess || hasCameraError || hasTrackingError) && (
-        <div style={{ position: 'absolute', zIndex: 20, width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', pointerEvents: 'none' }}>
-          <div className="glass-panel" style={{ width: '80%', maxWidth: '800px', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'auto' }}>
+        <div className="calibration-overlay" style={{ position: 'absolute', zIndex: 20, width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', pointerEvents: 'none' }}>
+          <div className="glass-panel calibration-panel" style={{ width: '80%', maxWidth: '800px', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'auto' }}>
             
             {calibrationSuccess ? (
               <div style={{ textAlign: 'center', animation: 'fadeIn 0.5s ease-out' }}>
-                <h2 className="text-glow-like" style={{ fontSize: '4rem', margin: '0 0 1rem 0' }}>识别成功</h2>
+                <h2 className="text-glow-like calibration-title" style={{ fontSize: '4rem', margin: '0 0 1rem 0' }}>识别成功</h2>
                 <p style={{ fontSize: '1.5rem', color: '#fff', opacity: 0.9 }}>
                   系统已锁定您的双手操作，即将进入战场...
                 </p>
@@ -164,12 +164,12 @@ export const StartCalibration: React.FC<StartCalibrationProps> = ({
               </div>
             ) : (
               <>
-                <h2 className="text-glow-cyan" style={{ fontSize: '3rem', margin: '0 0 1rem 0' }}>手势实战校准</h2>
+                <h2 className="text-glow-cyan calibration-title" style={{ fontSize: '3rem', margin: '0 0 1rem 0' }}>手势实战校准</h2>
                 <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
                   请挥动您的<span style={{ color: 'var(--primary-cyan)', fontWeight: 'bold' }}>左右手食指</span>，分别切中至少一个掉落物。
                 </p>
 
-                <div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', width: '100%', justifyContent: 'center' }}>
+                <div className="calibration-status-grid" style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', width: '100%', justifyContent: 'center' }}>
                   <div style={{ background: 'rgba(0,0,0,0.5)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
                     <h4 style={{ margin: '0 0 1rem 0', color: 'var(--primary-cyan)' }}>系统状态</h4>
                     <div style={{ marginBottom: '0.5rem' }}>
@@ -186,7 +186,7 @@ export const StartCalibration: React.FC<StartCalibrationProps> = ({
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', gap: '1rem' }}>
+                  <div className="calibration-hand-grid" style={{ display: 'flex', gap: '1rem' }}>
                     <div style={{
                       width: '140px',
                       border: `1px solid ${leftHitCount > 0 ? 'var(--like-color)' : 'var(--hate-color)'}`,
@@ -236,7 +236,7 @@ export const StartCalibration: React.FC<StartCalibrationProps> = ({
                   </div>
                 )}
 
-                <div style={{ display: 'flex', gap: '1rem' }}>
+                <div className="calibration-actions" style={{ display: 'flex', gap: '1rem' }}>
                   <button className="cyber-btn" onClick={onBack} style={{ borderColor: '#666', color: '#ccc' }}>
                     取消
                   </button>
@@ -251,7 +251,7 @@ export const StartCalibration: React.FC<StartCalibrationProps> = ({
                       onClick={forceMouseDebug}
                       style={{ background: 'transparent', borderStyle: 'dashed', color: 'var(--primary-cyan)' }}
                     >
-                      进入鼠标调试模式
+                      进入触摸/鼠标调试模式
                     </button>
                   )}
                 </div>

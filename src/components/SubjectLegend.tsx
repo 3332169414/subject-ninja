@@ -3,7 +3,7 @@ import { SUBJECTS } from '../data/subjects';
 
 export const SubjectLegend: React.FC = () => {
   return (
-    <div style={{ 
+    <div className="subject-legend" style={{ 
       display: 'grid', 
       gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
       gap: '1rem',

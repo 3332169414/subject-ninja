@@ -21,14 +21,14 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
   }, [showDemoTrailer]);
 
   return (
-    <div className="glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <div className="glass-panel start-screen">
       
       {/* 演示模式按钮 */}
-      <div style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 30 }}>
+      <div className="start-top-action start-top-action-right">
         <button
           className="cyber-btn"
           onClick={() => setShowDemoTrailer(true)}
-          style={{ padding: '8px 16px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
         >
           <Play size={16} />
           演示模式
@@ -36,11 +36,11 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
       </div>
 
       {/* 左上角项目说明按钮 */}
-      <div style={{ position: 'absolute', top: '2rem', left: '2rem', zIndex: 30 }}>
+      <div className="start-top-action start-top-action-left">
         <button 
           className="cyber-btn"
           onClick={() => setShowInfo(true)}
-          style={{ padding: '8px 16px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
         >
           <Info size={18} />
           项目说明
@@ -49,20 +49,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
 
       {/* 项目说明弹窗 */}
       {showInfo && (
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0,0,0,0.8)',
-          zIndex: 100,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backdropFilter: 'blur(4px)'
-        }}>
-          <div className="glass-panel" style={{ width: '80%', maxWidth: '600px', padding: '3rem', position: 'relative' }}>
+        <div className="modal-backdrop">
+          <div className="glass-panel info-modal">
             <button 
               onClick={() => setShowInfo(false)}
               style={{
@@ -78,8 +66,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
             >
               <X size={24} />
             </button>
-            <div className="text-glow-cyan" style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', borderBottom: '1px solid var(--primary-cyan)', paddingBottom: '0.5rem' }}>[ 项目说明 ]</div>
-            <div style={{ fontSize: '1.1rem', lineHeight: '2' }}>
+            <div className="text-glow-cyan info-modal-title">[ 项目说明 ]</div>
+            <div className="info-modal-body">
               <div><span style={{ color: 'var(--primary-cyan)' }}>项目名称：</span>学科忍者：知识乱斗</div>
               <div><span style={{ color: 'var(--primary-cyan)' }}>核心技术：</span>React, TypeScript, Vite, MediaPipe, Canvas</div>
               <div style={{ marginTop: '1rem' }}><span style={{ color: 'var(--like-color)' }}>创新点：</span>用手势捕捉把学科学习偏好做成体感游戏</div>
@@ -186,26 +174,23 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
       <div className="trailer-container">
         {/* 物件 1 */}
         <div className="trailer-item" style={{ left: '20%', animationDelay: '0s', borderColor: 'var(--primary-cyan)', boxShadow: '0 0 15px var(--primary-cyan)' }}>📐</div>
-        <div className="trailer-slash" style={{ top: '55vh', left: '15%', width: '200px', transform: 'rotate(30deg)', animationDelay: '2.1s' }}></div>
         
         {/* 物件 2 */}
         <div className="trailer-item" style={{ left: '70%', animationDelay: '1.5s', borderColor: 'var(--like-color)', boxShadow: '0 0 15px var(--like-color)' }}>🔬</div>
-        <div className="trailer-slash" style={{ top: '55vh', left: '60%', width: '250px', transform: 'rotate(-20deg)', animationDelay: '3.6s' }}></div>
 
         {/* 物件 3 */}
         <div className="trailer-item" style={{ left: '45%', animationDelay: '2.8s', borderColor: 'var(--hate-color)', boxShadow: '0 0 15px var(--hate-color)' }}>📜</div>
-        <div className="trailer-slash" style={{ top: '55vh', left: '35%', width: '300px', transform: 'rotate(10deg)', animationDelay: '4.9s' }}></div>
       </div>
 
-      <h1 className="text-glow-cyan" style={{ fontSize: '4rem', margin: '0 0 1rem 0', letterSpacing: '0.1em', zIndex: 10 }}>
+      <h1 className="text-glow-cyan start-title">
         学科忍者：知识乱斗
       </h1>
       
-      <p style={{ fontSize: '1.2rem', marginBottom: '3rem', opacity: 0.9, textAlign: 'center', maxWidth: '800px', lineHeight: '1.6' }}>
+      <p className="start-subtitle">
         用双手切开掉落的学科物件，避开你本局的<span className="text-glow-hate">厌恶学科</span>。
       </p>
       
-      <div style={{ display: 'flex', gap: '2rem' }}>
+      <div className="start-actions">
         <button className="cyber-btn" onClick={onStart}>
           启动全息手势模式
         </button>
@@ -214,13 +199,13 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
           onClick={onMouseDebug}
           style={{ background: 'transparent', borderStyle: 'dashed', opacity: 0.8 }}
         >
-          鼠标调试模式
+          触摸/鼠标调试模式
         </button>
       </div>
 
-      <div style={{ position: 'absolute', bottom: '2rem', fontSize: '0.9rem', opacity: 0.7, textAlign: 'center' }}>
+      <div className="start-hint">
         <div>提示：建议保持上半身入镜，距离屏幕 0.8~1.5 米，并保证双手清晰可见。</div>
-        <div style={{ marginTop: '0.5rem', color: '#FFB86C' }}>如无摄像头或需要测试，可使用鼠标调试模式，按住鼠标拖动进行切割。</div>
+        <div style={{ marginTop: '0.5rem', color: '#FFB86C' }}>如无摄像头或需要测试，可使用触摸/鼠标调试模式，按住并拖动进行切割。</div>
       </div>
     </div>
   );
