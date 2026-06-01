@@ -117,7 +117,6 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, onMouseDebug 
           </div>
 
           <div className="demo-trailer-hud demo-trailer-hud-right">
-            <span>本关目标</span>
             <strong className="demo-like">优先切中：语文、数学</strong>
             <strong className="demo-hate">尽量避开：音乐、历史</strong>
           </div>
