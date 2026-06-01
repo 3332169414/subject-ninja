@@ -1,7 +1,6 @@
 import React from 'react';
-import { TrackedHand, SubjectId } from '../types/game';
-import { SUBJECTS } from '../data/subjects';
-import { AlertTriangle, LogOut, Pause, Play, Shield } from 'lucide-react';
+import { TrackedHand } from '../types/game';
+import { LogOut, Pause, Play, Shield } from 'lucide-react';
 
 interface HudOverlayProps {
   score: number;
@@ -12,8 +11,6 @@ interface HudOverlayProps {
   level: number;
   timeLeft: number;
   bombCount?: number;
-  likedSubjects?: SubjectId[];
-  hatedSubjects?: SubjectId[];
   isPaused?: boolean;
   onPause?: () => void;
   onResume?: () => void;
@@ -29,17 +26,11 @@ export const HudOverlay: React.FC<HudOverlayProps> = ({
   level,
   timeLeft,
   bombCount = 0,
-  likedSubjects = [],
-  hatedSubjects = [],
   isPaused = false,
   onPause,
   onResume,
   onExit
 }) => {
-  const getSubjectNames = (ids: SubjectId[]) => {
-    return ids.map(id => SUBJECTS.find(s => s.id === id)?.name || id).join('、');
-  };
-
   return (
     <div className="hud-overlay" style={{
       position: 'absolute',
@@ -84,48 +75,28 @@ export const HudOverlay: React.FC<HudOverlayProps> = ({
 
       <div className="glass-panel hud-compact-panel hud-right-panel" style={{
         pointerEvents: 'auto',
-        padding: '1rem 1.2rem',
+        padding: '0.75rem 1rem',
         display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem'
+        gap: '0.75rem',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
       }}>
-        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-          <button
-            className="cyber-btn"
-            onClick={isPaused ? onResume : onPause}
-            style={{ padding: '8px 14px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px' }}
-          >
-            {isPaused ? <Play size={16} /> : <Pause size={16} />}
-            {isPaused ? '继续' : '暂停'}
-          </button>
-          <button
-            className="cyber-btn"
-            onClick={onExit}
-            style={{ padding: '8px 14px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px', borderColor: 'var(--hate-color)', color: 'var(--hate-color)' }}
-          >
-            <LogOut size={16} />
-            退出
-          </button>
-        </div>
-
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-cyan)', fontWeight: 'bold', marginBottom: '0.8rem' }}>
-            <AlertTriangle size={18} />
-            本关目标
-          </div>
-          <div style={{ marginBottom: '0.9rem' }}>
-            <div style={{ color: 'var(--like-color)', fontSize: '0.9rem', marginBottom: '0.25rem' }}>优先切中</div>
-            <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '1.05rem', lineHeight: 1.5 }}>
-              {likedSubjects.length > 0 ? getSubjectNames(likedSubjects) : '暂无'}
-            </div>
-          </div>
-          <div>
-            <div style={{ color: 'var(--hate-color)', fontSize: '0.9rem', marginBottom: '0.25rem' }}>尽量避开</div>
-            <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '1.05rem', lineHeight: 1.5 }}>
-              {hatedSubjects.length > 0 ? getSubjectNames(hatedSubjects) : '暂无'}
-            </div>
-          </div>
-        </div>
+        <button
+          className="cyber-btn"
+          onClick={isPaused ? onResume : onPause}
+          style={{ padding: '8px 14px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+        >
+          {isPaused ? <Play size={16} /> : <Pause size={16} />}
+          {isPaused ? '继续' : '暂停'}
+        </button>
+        <button
+          className="cyber-btn"
+          onClick={onExit}
+          style={{ padding: '8px 14px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px', borderColor: 'var(--hate-color)', color: 'var(--hate-color)' }}
+        >
+          <LogOut size={16} />
+          退出
+        </button>
       </div>
     </div>
   );

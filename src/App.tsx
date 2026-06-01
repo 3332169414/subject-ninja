@@ -392,8 +392,6 @@ function App() {
                 level={level}
                 timeLeft={timeLeft}
                 bombCount={bombCount}
-                likedSubjects={likedSubjects}
-                hatedSubjects={hatedSubjects}
                 isPaused={page === 'paused'}
                 onPause={handlePause}
                 onResume={handleResume}
