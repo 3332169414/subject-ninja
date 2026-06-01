@@ -352,7 +352,10 @@ body {
   display: none;
 }
 .hud-compact-panel {
-  background: rgba(0, 20, 30, 0.9);
+  background: rgba(0, 20, 30, 0.42);
+  border-color: rgba(0, 255, 255, 0.32);
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.12);
+  backdrop-filter: blur(2px);
 }
 
 .hud-overlay {
